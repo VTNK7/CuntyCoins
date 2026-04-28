@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "CuntyCoins",
+    "slug": "cuntycoin",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#0d001a"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.cuntycoin.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Scanner les QR codes des stickers CuntyCoins"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0d001a"
+      },
+      "package": "com.cuntycoin.app",
+      "permissions": ["android.permission.CAMERA"]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Accès à la caméra pour scanner les QR codes des stickers CuntyCoins."
+        }
+      ]
+    ]
+  }
+}
