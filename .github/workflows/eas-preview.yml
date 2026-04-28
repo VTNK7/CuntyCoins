@@ -1,0 +1,43 @@
+name: EAS Preview Build
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    name: EAS Android Preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build preview APK
+        run: eas build --platform android --profile preview --non-interactive --no-wait
+
+      - name: Post build link comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🔨 **EAS Build lancé !**\n\nSuis la progression et télécharge l\'APK sur [expo.dev/accounts/dev-ci-cunty/projects/cuntycoins/builds](https://expo.dev/accounts/dev-ci-cunty/projects/cuntycoins/builds)'
+            })
