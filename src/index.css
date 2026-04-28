@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pink: #ff2e93;
+  --color-pink-deep: #d4006e;
+  --color-lilac: #c9a8ff;
+  --color-yellow: #ffe600;
+  --color-mint: #6effc4;
+  --color-cream: #fff8f0;
+  --color-paper: #fff8f0;
+  --color-ink: #14110f;
+
+  --font-display: "Bagel Fat One", cursive;
+  --font-body: "Space Grotesk", sans-serif;
+  --font-hand: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-paper);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+}
+
+/* Holo shimmer for ultra rare cards */
+@keyframes holo-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.holo-bg {
+  background: linear-gradient(
+    135deg,
+    #ff2e93 0%,
+    #c9a8ff 20%,
+    #6effc4 40%,
+    #ffe600 60%,
+    #ff2e93 80%,
+    #c9a8ff 100%
+  );
+  background-size: 300% 300%;
+  animation: holo-shift 4s ease infinite;
+}
+
+.holo-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s ease infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Card flip animation */
+@keyframes card-flip-in {
+  0% {
+    transform: perspective(600px) rotateY(90deg) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(600px) rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.card-flip-in {
+  animation: card-flip-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Confetti burst */
+@keyframes confetti-burst {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+/* Scanner laser sweep */
+@keyframes scan-sweep {
+  0%, 100% { top: 15%; }
+  50% { top: 75%; }
+}
+
+.scan-laser {
+  animation: scan-sweep 2s ease-in-out infinite;
+}
+
+/* Pulse glow for scan button */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 5px 5px 0 var(--color-ink), 0 0 30px rgba(255, 46, 147, 0.5); }
+  50% { box-shadow: 5px 5px 0 var(--color-ink), 0 0 50px rgba(255, 46, 147, 0.7); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Screen enter animation */
+@keyframes screen-enter {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+
+.screen-enter {
+  animation: screen-enter 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npx --yes create-vite@latest tmp-vite --template react-ts)",
+      "Bash(cp -r tmp-vite/* .)",
+      "Bash(cp tmp-vite/.gitignore .)",
+      "Bash(rm -rf tmp-vite)",
+      "Bash(npm install:*)",
+      "Bash(rm -f App.css)",
+      "Bash(rm -rf assets)",
+      "Bash(mkdir -p components lib)",
+      "Bash(npx tsc:*)",
+      "Bash(VITE_SUPABASE_URL=https://test.supabase.co VITE_SUPABASE_ANON_KEY=test npm run build)",
+      "mcp__claude_ai_Supabase__list_projects",
+      "mcp__claude_ai_Supabase__list_tables",
+      "mcp__claude_ai_Supabase__apply_migration",
+      "mcp__claude_ai_Supabase__execute_sql",
+      "mcp__claude_ai_Supabase__get_project_url",
+      "mcp__claude_ai_Supabase__get_publishable_keys"
+    ]
+  }
+}
